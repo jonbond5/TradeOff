@@ -14,7 +14,6 @@
     <link href="css/standard.css" rel="stylesheet">
     <link href="css/add.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-    <script src="js/add.js"></script>
 
   </head>
   <body>
@@ -42,33 +41,37 @@
         <div class="col-sm-5 tra">
           <div class="row">
             <div class="col-sm-12 trading-block box">
-              <div class="col-sm-6" style="font-size:18px">
-                Items you are trading:
+              <div class="row">
+                <div class="col-sm-6" style="font-size:18px">
+                  Items you are trading:
+                </div>
               </div>
+              <div class="col-sm-6"></div>
               <br>
-
+              <div id="give_container" class="trade_container">
+                <ul class="media box">
+                  <div class="media-body">
+                    {{ item_name }}
+                  </div>
+                  <div class="media-right">
+                    <a onclick="$(this).closest('ul').remove();">X</a>
+                  </div>
+                </ul>
+                <ul class="media box">
+                  <div class="media-body">
+                    {{ item_name }}
+                  </div>
+                  <div class="media-right">
+                    <a onclick="$(this).closest('ul').remove();">X</a>
+                  </div>
+                </ul>
+              </div>
               <ul class="media box">
                 <div class="media-body">
-                  {{ item_name }}
+                  <textarea type="text" id="give_new_item" placeholder="Add a new item"></textarea>
                 </div>
                 <div class="media-right">
-                  <a>X</a>
-                </div>
-              </ul>
-              <ul class="media box">
-                <div class="media-body">
-                  {{ item_name }}
-                </div>
-                <div class="media-right">
-                  <a>X</a>
-                </div>
-              </ul>
-              <ul class="media box">
-                <div class="media-body">
-                  <textarea type="text" placeholder="Add a new item"></textarea>
-                </div>
-                <div class="media-right">
-                  <button id="add_trade" style="font-size:20px">
+                  <button id="add_trade_give" style="font-size:20px">
                     <span class="glyphicon glyphicon-plus pull-right"></span>
                   </button>
                 </div>
@@ -79,34 +82,38 @@
         <div class="col-sm-5 req">
           <div class="row">
             <div class="col-sm-12 trading-block box">
-              <div class="col-sm-6" style="font-size:18px">
-                Items you are requesting:
+              <div class="row">
+                <div class="col-sm-6" style="font-size:18px">
+                  Items you are requesting:
+                </div>
               </div>
               <br>
+              <div id="get_container" class="trade_container">
+                <ul class="media box">
+                  <div class="media-body">
+                    {{ item_name }}
+                  </div>
+                  <div class="media-right">
+                    <a onclick="$(this).closest('ul').remove();">X</a>
+                  </div>
+                </ul>
+                <ul class="media box">
+                  <div class="media-body">
+                    {{ item_name }}
+                  </div>
+                  <div class="media-right">
+                    <a onclick="$(this).closest('ul').remove();">X</a>
+                  </div>
+                </ul>
+              </div>
               <ul class="media box">
                 <div class="media-body">
-                  {{ item_name }}
+                  <textarea type="text" id="request_new_item" placeholder="Add a new item"></textarea>
                 </div>
                 <div class="media-right">
-                  <a>X</a>
-                </div>
-              </ul>
-              <ul class="media box">
-                <div class="media-body">
-                  {{ item_name }}
-                </div>
-                <div class="media-right">
-                  <a>X</a>
-                </div>
-              </ul>
-              <ul class="media box">
-                <div class="media-body">
-                  <textarea type="text" placeholder="Add a new item"></textarea>
-                </div>
-                <div class="media-right">
-                  <a style="font-size:20px">
+                  <button id="add_trade_get" style="font-size:20px">
                     <span class="glyphicon glyphicon-plus pull-right"></span>
-                  </a>
+                  </button>
                 </div>
               </ul>
             </div>
@@ -115,6 +122,32 @@
         <div class="col-sm-1"></div>
       </div>
     </div>
+
+    <script>
+    $(document).ready(function() {
+    $(document.getElementById('add_trade_give')).click(
+        function(){
+          var addedItem = $(document.getElementById('give_new_item')).val();
+          if(addedItem != ''){
+            console.log(addedItem);
+            $(document.getElementById('give_container')).append('<ul class="media box"><div class="media-body">'+addedItem+'</div><div class="media-right"><a onclick="$(this).closest(\'ul\').remove();">X</a></div></ul>')
+            $(document.getElementById('give_new_item')).val('');
+          }
+          return false;
+    });
+
+    $(document.getElementById('add_trade_get')).click(
+        function(){
+          var addedItem = $(document.getElementById('request_new_item')).val();
+          if(addedItem != ''){
+            console.log(addedItem);
+            $(document.getElementById('get_container')).append('<ul class="media box"><div class="media-body">'+addedItem+'</div><div class="media-right"><a onclick="$(this).closest(\'ul\').remove();">X</a></div></ul>')
+            $(document.getElementById('request_new_item')).val('');
+          }
+          return false;
+    });
+})
+    </script>
   </body>
 </html>
 

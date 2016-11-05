@@ -6,6 +6,19 @@ body {
 	background: white;
 }
 
+.trading-block > .trade_container > .media {
+	background: white;
+	border: 1px solid black;
+}
+
+.trading-block > .trade_container > .media > .media-left {
+	min-width: 150px;
+}
+
+.trading-block > .trade_container > .media > .media-body {
+	text-align: center;
+}
+
 .trading-block > .media {
 	background: white;
 	border: 1px solid black;
@@ -39,4 +52,10 @@ textarea {
 	width: 100%;
 	overflow: auto;
 	text-align: center;
+}
+
+button {
+	border: none;
+	background: white;
+	outline: none;
 }
