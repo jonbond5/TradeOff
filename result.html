@@ -72,7 +72,12 @@
           <div class="row">
             <div class="col-sm-12 chat box">
               <form>
-                <textarea type="text" placeholder="Enter a message"></textarea>
+                <div class="input-group">
+                  <textarea id="message_box" type="text" placeholder="Enter a message"></textarea>
+                  <span class="input-group-btn">
+                    <button class="btn btn-default">Submit</button>
+                  </span>
+                </div>
               </form>
             </div>
           </div>
@@ -80,10 +85,10 @@
         <div class="col-sm-3">
           <div class="row">
             <div class="col-sm-12">
-              <button class="btn btn-default box" style="width:100%">Accept Trade</button>
+              <button class="btn btn-default box acpt" style="width:100%">Accept Trade</button>
             </div>
             <div class="col-sm-12">
-              <button class="btn btn-default box" style="width:100%">Decline Trade</button>
+              <button class="btn btn-default box decl" style="width:100%">Decline Trade</button>
             </div>
           </div>
         </div>
@@ -91,4 +96,7 @@
       </div>
     </div>
   </body>
+  <script>
+  $(document.getElementById("message_box")).autoResize();
+  </script>
 </html>
