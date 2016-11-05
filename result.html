@@ -13,6 +13,7 @@
 
     <link href="css/standard.css" rel="stylesheet">
     <link href="css/result.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
   </head>
   <body>
     <div class="navbar navbar-fixed-top navbar-default">
@@ -25,9 +26,7 @@
               <div class="media-left">
                 <img class="nav-user-pic" src="img/blank-profile.png">
               </div>
-              <div class="media-body">
-                Admin
-              </div>
+              <div class="media-body" id="user">{{ user }}</div>
             </a>
           </ul>
         </div>
@@ -72,12 +71,16 @@
           <div class="row">
             <div class="col-sm-12 chat box">
               <div class="row">
+                <div class="col-sm-12" id="chat_log" style="margin-bottom:14px">
+                </div>
+              </div>
+              <div class="row">
                 <div class="col-sm-12">
                   <form>
                     <div class="input-group">
                       <textarea id="message_box" type="text" placeholder="Enter a message"></textarea>
                       <span class="input-group-btn">
-                        <button class="btn btn-default">Submit</button>
+                        <button class="btn btn-default" id="sub_btn">Submit</button>
                       </span>
                     </div>
                   </form>
@@ -102,19 +105,36 @@
   </body>
   <script>
   $(document).ready(function() {
-    $(document.getElementById('message_box')).click(
+    $(document.getElementById('sub_btn')).click(
       function(){
-        var addedItem = $(document.getElementById('give_new_item')).val();
-        if(addedItem != ''){
-          console.log(addedItem);
-          $(document.getElementById('give_container')).append()
-          $(document.getElementById('give_new_item')).val('');
-          $.post("/addItem", {"item": addedItem});
+        var message = $(document.getElementById('message_box')).val();
+        var user = $(document.getElementById('user')).text();
+        var dat = { };
+        dat[user] = message;
+        console.log(dat);
+        if(message != ''){
+          console.log(message);
+          $(document.getElementById('chat_log')).append('<div>'+user+': '+message+'</div><hr>')
+          $(document.getElementById('message_box')).val('');
+
         }
+        $.ajax({
+          url: 'http://localhost:8080',
+          type: 'POST',
+          data: dat,
+          success: function (result) {
+            alert("Your bookmark has been saved");
+          }
+        });
         return false;
     });
 
-
-  $(document.getElementById("message_box")).autoResize();
+  });
   </script>
 </html>
+
+
+
+
+
+
