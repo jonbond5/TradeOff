@@ -50,7 +50,7 @@ textarea {
 	height: 18px;
 	outline: none;
 	width: 100%;
-	overflow: auto;
+	overflow: auto !important;
 	text-align: center;
 }
 

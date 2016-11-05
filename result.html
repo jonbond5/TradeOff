@@ -71,14 +71,18 @@
             </div>
           <div class="row">
             <div class="col-sm-12 chat box">
-              <form>
-                <div class="input-group">
-                  <textarea id="message_box" type="text" placeholder="Enter a message"></textarea>
-                  <span class="input-group-btn">
-                    <button class="btn btn-default">Submit</button>
-                  </span>
+              <div class="row">
+                <div class="col-sm-12">
+                  <form>
+                    <div class="input-group">
+                      <textarea id="message_box" type="text" placeholder="Enter a message"></textarea>
+                      <span class="input-group-btn">
+                        <button class="btn btn-default">Submit</button>
+                      </span>
+                    </div>
+                  </form>
                 </div>
-              </form>
+              </div>
             </div>
           </div>
         </div>
@@ -97,6 +101,20 @@
     </div>
   </body>
   <script>
+  $(document).ready(function() {
+    $(document.getElementById('message_box')).click(
+      function(){
+        var addedItem = $(document.getElementById('give_new_item')).val();
+        if(addedItem != ''){
+          console.log(addedItem);
+          $(document.getElementById('give_container')).append()
+          $(document.getElementById('give_new_item')).val('');
+          $.post("/addItem", {"item": addedItem});
+        }
+        return false;
+    });
+
+
   $(document.getElementById("message_box")).autoResize();
   </script>
 </html>
