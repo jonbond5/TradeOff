@@ -1,0 +1,42 @@
+body {
+	margin-top: 90px;
+}
+
+.trading-block {
+	background: white;
+}
+
+.trading-block > .media {
+	background: white;
+	border: 1px solid black;
+}
+
+.trading-block > .media > .media-left {
+	min-width: 150px;
+}
+
+.trading-block > .media > .media-body {
+	text-align: center;
+}
+
+.tra {
+	margin-right: 4px;
+}
+
+.req {
+	margin-left: 4px;
+}
+
+ul {
+	padding-left: 10px;
+}
+
+textarea {
+	border: none;
+	resize: none;
+	height: 18px;
+	outline: none;
+	width: 100%;
+	overflow: auto;
+	text-align: center;
+}

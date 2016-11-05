@@ -1,0 +1,16 @@
+body {
+	margin-top: 90px;
+}
+
+.chat {
+	background: white;
+}
+
+.chat textarea {
+	min-width: 100%;
+	max-width: 100%;
+}
+
+button {
+	margin-bottom: 8px !important;
+}

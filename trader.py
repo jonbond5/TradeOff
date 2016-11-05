@@ -7,10 +7,6 @@ db = client.tradeoff
 traderDB = db.traders
 merchDB = db.merchandise
 
-
-def createNewUser(info):
-    return Trader(info)
-
 class Trader:
     mongoId = None
     details = None
@@ -82,34 +78,38 @@ class Trader:
         # Give to other
         traderDB.update_one({"_id": other.mongoId}, {"$push": { "merch": merch.mongoId }})
         
+        # Update owner
+        merchDB.update_one({"_id": merch.mongoId}, {"$set": { "owner": other.mongoId }})
+        merch.traderId = other.mongoId
+        
         # Remove from other's wanted
         traderDB.update_one({"_id": other.mongoId}, {"$pull": {"wantedmerch": merch.mongoId}})
 
     def enumerateMerch(self):
         # Return an iterable that yields this trader's merch
-        assert type(self.mongoId) == ObjectId
+        return enumerateArray('merch')
 
-        merchids = traderDB.find({"_id": self.mongoId})[0]['merch']
-        merchdetails = merchDB.find({"_id": {"$in": merchids}})
-
-        try:
-            while True:
-                yield merchdetails.next()['details']
-        except StopIteration:
-            pass
 
     def enumerateWantedMerch(self):
         # Return an iterable that yields this trader's wanted merch
+        return enumerateArray('wantedmerch')
+
+    def enumerateArray(self, arrayname):
         assert type(self.mongoId) == ObjectId
 
-        merchids = traderDB.find({"_id": self.mongoId})[0]['wantedmerch']
+        merchids = traderDB.find({"_id": self.mongoId})[0][arrayname]
         merchdetails = merchDB.find({"_id": {"$in": merchids}})
 
         try:
             while True:
-                yield merchdetails.next()['details']
+                nxt = merchdetails.next()
+                ret = Merchandise(nxt['details'])
+                ret.mongoId = nxt['_id']
+                ret.traderId = nxt['owner']
+                yield ret
         except StopIteration:
             pass
+
 
     def addWantedMerch(self, merch):
         # Add merch of another user to merch this user wants

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    <link rel="stylesheet" type="text/css" href={{ url_for('static',filename="login.css") }}>
+    <link rel="stylesheet" type="text/css" href={{ url_for('static',filename="css/login.css") }}>
 
 </head>
 <body>
@@ -16,15 +16,19 @@
             <button>create</button>
             <p class="message">Already registered? <a href="#">Sign In</a></p>
         </form>
-        <form class="login-form">
-            <input id=loginUsername type="text" placeholder="username"/>
-            <input id=loginPassword type="password" placeholder="password"/>
-            <button>login</button>
+        <form class="login-form" action=/login method=POST>
+            <input name=loginUsername type="text" placeholder="username"/>
+            <input name=loginPassword type="password" placeholder="password"/>
+            <button type=submit>login</button>
             <p class="message">Not registered? <a href="#">Create an account</a></p>
         </form>
     </div>
 </div>
-<script>
-$.post("/login",{'username':document.getElementById('loginUsername'),'password':document.getElementById('password')});
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script>/*
+function sendRequest(){
+$.ajax("/login",{'username':document.getElementById('loginUsername').value,'password':document.getElementById('loginPassword').value});*/
+}
+</script>
 </body>
 </html>
