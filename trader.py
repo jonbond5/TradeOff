@@ -10,6 +10,13 @@ merchDB = db.merchandise
 def getUserCount():
     return traderDB.count()
 
+# Returns a list of all users
+def getUsers():
+    user_list = []
+    for i in t.find():
+        user_list += [i]
+    return user_list
+
 def getUserByField(field, value):
     assert type(field) == str and type(value) == str
 
