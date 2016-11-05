@@ -47,3 +47,8 @@ button {
 	outline: none !important;
 	height: 50px;
 }
+
+hr {
+	margin-top: 4px;
+	margin-bottom: 4px;
+}
