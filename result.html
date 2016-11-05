@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Tradeoff</title>
+
+    <!-- Bootstrap's CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="css/standard.css" rel="stylesheet">
+    <link href="css/result.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="navbar navbar-fixed-top navbar-default">
+      <div class="container">
+        <div class="col-sm-6"></div>
+        <div class="col-sm-6">    
+          <ul class="nav navbar-nav navbar-left"></ul>
+          <ul class="nav navbar-nav navbar-right">
+            <a class="media navbar-btn" href="#">
+              <div class="media-left">
+                <img class="nav-user-pic" src="img/blank-profile.png">
+              </div>
+              <div class="media-body">
+                Admin
+              </div>
+            </a>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-2">
+          <div class="row sidebar">
+            <div class="col-sm-12 box">
+              <a>
+                <ul>
+                  Your Trades
+                </ul>
+              </a>
+              <a>
+                <ul>
+                  Recent Trades
+                </ul>
+              </a>
+              <a>
+                <ul>
+                  Account Settings
+                </ul>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="col-sm-12 matched-trade box">
+              You are giving {{ item }} to {{ get_user }}.
+            </div>
+            <div class="col-sm-12 matched-trade box">
+              {{ give_user }} is giving {{ item }} to {{ get_user }}.
+            </div>
+            <div class="col-sm-12 matched-trade box">
+              {{ give_user }} is giving {{ item }} to {{ get_user }}.
+            </div>
+            <div class="col-sm-12 matched-trade box">
+              {{ give_user }} is giving {{ item }} to you.
+            </div>
+          <div class="row">
+            <div class="col-sm-12 chat box">
+              <form>
+                <textarea type="text" placeholder="Enter a message"></textarea>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="row">
+            <div class="col-sm-12">
+              <button class="btn btn-default box" style="width:100%">Accept Trade</button>
+            </div>
+            <div class="col-sm-12">
+              <button class="btn btn-default box" style="width:100%">Decline Trade</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-1"></div>
+      </div>
+    </div>
+  </body>
+</html>
