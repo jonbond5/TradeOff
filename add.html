@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Tradeoff</title>
+
+    <!-- Bootstrap's CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="css/standard.css" rel="stylesheet">
+    <link href="css/add.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="js/add.js"></script>
+
+  </head>
+  <body>
+    <div class="navbar navbar-fixed-top navbar-default">
+      <div class="container">
+        <div class="col-sm-6"></div>
+        <div class="col-sm-6">    
+          <ul class="nav navbar-nav navbar-left"></ul>
+          <ul class="nav navbar-nav navbar-right">
+            <a class="media navbar-btn" href="#">
+              <div class="media-left">
+                <img class="nav-user-pic" src="img/blank-profile.png">
+              </div>
+              <div class="media-body">
+                Admin
+              </div>
+            </a>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-5 tra">
+          <div class="row">
+            <div class="col-sm-12 trading-block box">
+              <div class="col-sm-6" style="font-size:18px">
+                Items you are trading:
+              </div>
+              <br>
+
+              <ul class="media box">
+                <div class="media-body">
+                  {{ item_name }}
+                </div>
+                <div class="media-right">
+                  <a>X</a>
+                </div>
+              </ul>
+              <ul class="media box">
+                <div class="media-body">
+                  {{ item_name }}
+                </div>
+                <div class="media-right">
+                  <a>X</a>
+                </div>
+              </ul>
+              <ul class="media box">
+                <div class="media-body">
+                  <textarea type="text" placeholder="Add a new item"></textarea>
+                </div>
+                <div class="media-right">
+                  <button id="add_trade" style="font-size:20px">
+                    <span class="glyphicon glyphicon-plus pull-right"></span>
+                  </button>
+                </div>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-5 req">
+          <div class="row">
+            <div class="col-sm-12 trading-block box">
+              <div class="col-sm-6" style="font-size:18px">
+                Items you are requesting:
+              </div>
+              <br>
+              <ul class="media box">
+                <div class="media-body">
+                  {{ item_name }}
+                </div>
+                <div class="media-right">
+                  <a>X</a>
+                </div>
+              </ul>
+              <ul class="media box">
+                <div class="media-body">
+                  {{ item_name }}
+                </div>
+                <div class="media-right">
+                  <a>X</a>
+                </div>
+              </ul>
+              <ul class="media box">
+                <div class="media-body">
+                  <textarea type="text" placeholder="Add a new item"></textarea>
+                </div>
+                <div class="media-right">
+                  <a style="font-size:20px">
+                    <span class="glyphicon glyphicon-plus pull-right"></span>
+                  </a>
+                </div>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-1"></div>
+      </div>
+    </div>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
