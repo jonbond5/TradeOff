@@ -1,14 +1,18 @@
 #!/usr/bin/env python2
 
-from trader import Merchandise, Trader
+from trader import Merchandise, Trader, getUserByField
 
 
 # This registers graboy and grebby and returns them. If you want instances of
 # pre-existing users, use Merchandise.getTrader(), or specify how I should give
 # them to you.
-user1 = Trader({'username': 'graboy', 'password': 'password123'})
-user2 = Trader({'username': 'grebby', 'password': '123password'})
 
+# user1 = Trader({'username': 'graboy', 'password': 'password123'})
+# user2 = Trader({'username': 'grebby', 'password': '123password'})
+
+# This gets registered users
+user1 = getUserByField('username', 'graboy')
+user2 = getUserByField('username', 'grebby')
 
 # The dictionary you pass it is stored in .details
 apple = Merchandise({'name': 'apple'})

@@ -7,9 +7,6 @@ db = client.tradeoff
 traderDB = db.traders
 merchDB = db.merchandise
 
-def getUserCount():
-    return traderDB.count()
-
 def getUserByField(field, value):
     assert type(field) == str and type(value) == str
 
@@ -131,10 +128,8 @@ class Trader:
         #   Make sure this user does not possess given merch
         #   Make sure this user does not already want this merch
         #   Make sure merch exists
-        assert type(self.mongoId) == ObjectId and merch.mongoId == None
-        merch.traderId = self.mongoId
-        result = merchDB.insert_one(merch.getDictionary())
-        merch.mongoId = result.inserted_id
+        assert type(self.mongoId) == ObjectId and merch.mongoId != None
+
         traderDB.update_one(
             { "_id": self.mongoId },
             { "$push": { "wantedmerch": merch.mongoId } } 

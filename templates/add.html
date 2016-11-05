@@ -9,10 +9,10 @@
     <title>Tradeoff</title>
 
     <!-- Bootstrap's CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/css/bootstrap.min.css" rel="stylesheet">
 
-    <link href="css/standard.css" rel="stylesheet">
-    <link href="css/add.css" rel="stylesheet">
+    <link href="static/css/standard.css" rel="stylesheet">
+    <link href="static/css/add.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 
   </head>
@@ -49,22 +49,16 @@
               <div class="col-sm-6"></div>
               <br>
               <div id="give_container" class="trade_container">
-                <ul class="media box">
-                  <div class="media-body">
+                {% for item_name in tradingList %}
+                  <ul class="media box">
+                  <div class="media-body" id={{item_name}}>
                     {{ item_name }}
                   </div>
                   <div class="media-right">
-                    <a onclick="$(this).closest('ul').remove();">X</a>
+                    <a onclick="$(this).closest('ul').remove();$.post('/delete',{'value':$(this).parent().siblings().text()})">X</a>
                   </div>
                 </ul>
-                <ul class="media box">
-                  <div class="media-body">
-                    {{ item_name }}
-                  </div>
-                  <div class="media-right">
-                    <a onclick="$(this).closest('ul').remove();">X</a>
-                  </div>
-                </ul>
+                {% endfor %}
               </div>
               <ul class="media box">
                 <div class="media-body">
@@ -89,22 +83,16 @@
               </div>
               <br>
               <div id="get_container" class="trade_container">
+                {% for item_name in requestList %}
                 <ul class="media box">
                   <div class="media-body">
                     {{ item_name }}
                   </div>
                   <div class="media-right">
-                    <a onclick="$(this).closest('ul').remove();">X</a>
+                    <a onclick="$(this).closest('ul').remove();$.post('/delete1',{'value':$(this).parent().siblings().text()})">X</a>
                   </div>
                 </ul>
-                <ul class="media box">
-                  <div class="media-body">
-                    {{ item_name }}
-                  </div>
-                  <div class="media-right">
-                    <a onclick="$(this).closest('ul').remove();">X</a>
-                  </div>
-                </ul>
+                {% endfor %}
               </div>
               <ul class="media box">
                 <div class="media-body">
@@ -132,7 +120,7 @@
           console.log(addedItem);
           $(document.getElementById('give_container')).append('<ul class="media box"><div class="media-body">'+addedItem+'</div><div class="media-right"><a onclick="$(this).closest(\'ul\').remove();">X</a></div></ul>')
           $(document.getElementById('give_new_item')).val('');
-          $.post("/addItem", {"item": addedItem});
+          $.post("/addItemGive", {"item": addedItem});
         }
         return false;
     });
@@ -144,7 +132,7 @@
           console.log(addedItem);
           $(document.getElementById('get_container')).append('<ul class="media box"><div class="media-body">'+addedItem+'</div><div class="media-right"><a onclick="$(this).closest(\'ul\').remove();">X</a></div></ul>')
           $(document.getElementById('request_new_item')).val('');
-          $.post("/addItem", {"item": addedItem});
+          $.post("/addItemGet", {"item": addedItem});
         }
         return false;
       });
