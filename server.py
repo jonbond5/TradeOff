@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, request, session, escape
+from flask import Flask, url_for, render_template, redirect, request, session, escape
 from pymongo import MongoClient
 from flask.ext.login import LoginManager, UserMixin, login_required
 import trader
@@ -20,18 +20,23 @@ def db_pass_query(user,password):
 
 @app.route('/')
 def index():
-    return render_template('index.html')
-
+    try:
+        return render_template('homepage.html',user=session['user'])
+    except:
+        return render_template('Login.html')
 @app.route('/login',methods=['GET','POST'])
 def login():
     if request.method == 'GET':
-        return render_template('index.html')
-    user = request.form['username']
-    if db_pass_query(user, request.form['password']):
+        return render_template('Login.html')
+    print 'this' # MOST IMPORTANT LINE AT HACKHOLYOKE
+                 # DON'T REMOVE!!!!!!!!!!!
+    user = request.form['loginUsername']
+    print request.form
+    if db_pass_query(user, request.form['loginPassword']):
         print 'Logged in\n'
         session['user'] = user
         print session
-    return render_template('index.html')
+        return redirect(url_for('index'))
     
 @app.route('/register',methods=['GET','POST'])
 def register():
@@ -41,9 +46,10 @@ def register():
     psk  = request.form['password']
     db.posts.insert_one({'user':user,'pass':psk}) # Append user to logindb
     session['user'] = user
-    return render_template('test.html',user=session['user'])
+    redirect('http://goo')
+    return 
 
-@app.route('/test')
+@app.route('/test',methods=['GET','POST'])
 def test():
     try:
         return render_template('test.html',user=session['user'])

@@ -4,7 +4,8 @@ from trader import Merchandise, Trader
 
 
 # This registers graboy and grebby and returns them. If you want instances of
-# pre-existing users
+# pre-existing users, use Merchandise.getTrader(), or specify how I should give
+# them to you.
 user1 = Trader({'username': 'graboy', 'password': 'password123'})
 user2 = Trader({'username': 'grebby', 'password': '123password'})
 
@@ -17,7 +18,7 @@ pumpkin  = Merchandise({'name': 'pumpkin'})
 
 # e.g.: apple.details['name'] == 'apple'
 
-# createMerch: called when a user wants to put up a new item of theirs for
+# createMerch: called when a user wants to put a new item of theirs up for
 # trade.
 user1.createMerch(apple) 
 user1.createMerch(pear) 
@@ -25,7 +26,8 @@ user1.createMerch(pear)
 user2.createMerch(grape) 
 user2.createMerch(pumpkin) 
 
-# Prints some ordering of "apple", "pear":
+# Prints some ordering of "apple", "pear". enumerateMerch() is a generator that
+# yields Merchandise objects.
 for merch in user1.enumerateMerch(): print merch.details['name'] 
 
 # Prints some ordering of "grape", "pumpkin":
@@ -52,5 +54,11 @@ for merch in user2.enumerateMerch(): print merch.details['name']
 # Shouldn't print anything since user1 got his pumpkin:
 for merch in user1.enumerateWantedMerch(): print merch.details['name'] 
 
-# Owner of the pumpkin:
-pumpkin.getTrader().details['
+# Prints owner of the pumpkin. getTrader() returns Trader object.
+print pumpkin.getTrader().details['username']
+
+# user1 wants his pear back
+user1.addWantedMerch(pear)
+
+# Print passwords of all users who have an item that user1 wants
+for merch in user1.enumerateWantedMerch(): print merch.getTrader().details['password']
