@@ -13,9 +13,16 @@ def getUserCount():
 # Returns a list of all users
 def getUsers():
     user_list = []
-    for i in t.find():
+    for i in traderDB.find():
         user_list += [i]
     return user_list
+
+def getWantedList(user):
+    return user['wantedmerch']
+
+def getHasList(user):
+    return user['merch']
+
 
 def getUserByField(field, value):
     assert type(field) == str and type(value) == str

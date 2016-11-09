@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Tradeoff</title>
+
+    <!-- Bootstrap's CSS -->
+    <link href="{{url_for('static',filename='css/bootstrap.min.css')}}" rel="stylesheet">
+
+    <link href="{{url_for('static',filename='css/standard.css')}}" rel="stylesheet">
+    <link href="{{url_for('static',filename='css/result.css')}}" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="navbar navbar-fixed-top navbar-default">
+      <div class="container">
+        <div class="col-sm-6"></div>
+        <div class="col-sm-6">    
+          <ul class="nav navbar-nav navbar-left"></ul>
+          <ul class="nav navbar-nav navbar-right">
+            <a class="media navbar-btn" href="#">
+              <div class="media-left">
+                <img class="nav-user-pic" src="img/blank-profile.png">
+              </div>
+              <div class="media-body" id="user">{{ user }}</div>
+            </a>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-2">
+          <div class="row sidebar">
+            <div class="col-sm-12 box">
+              <a>
+                <ul>
+                  Your Trades
+                </ul>
+              </a>
+              <a>
+                <ul>
+                  Recent Trades
+                </ul>
+              </a>
+              <a>
+                <ul>
+                  Account Settings
+                </ul>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="col-sm-12 matched-trade box">
+              You are giving apple to jon.
+            </div>
+            <div class="col-sm-12 matched-trade box">
+              Jon is giving car to keith.
+            </div>
+            <div class="col-sm-12 matched-trade box">
+              Keith is giving toothpic to you.
+            </div>
+          <div class="row">
+            <div class="col-sm-12 chat box">
+              <div class="row">
+                <div class="col-sm-12" id="chat_log" style="margin-bottom:14px">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <form>
+                    <div class="input-group">
+                      <textarea id="message_box" type="text" placeholder="Enter a message"></textarea>
+                      <span class="input-group-btn">
+                        <button class="btn btn-default" id="sub_btn">Submit</button>
+                      </span>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="row">
+            <div class="col-sm-12">
+              <button id="acp" class="btn btn-default box acpt" style="width:100%;background-color:lightgreen">Accept Trade</button>
+            </div>
+            <div class="col-sm-12">
+              <button id="dec" class="btn btn-default box decl" style="width:100%;background-color:red">Decline Trade</button>
+            </div>
+          </div>
+          <div id="yv" class="row">
+                
+          </div>
+        </div>
+        <div class="col-sm-1"></div>
+      </div>
+    </div>
+  </body>
+  <script>
+  $(document).ready(function() {
+    $(document.getElementById('acp')).click(
+        function(){
+            $(document.getElementById('yv')).append('<div>Thanks for accepting the trade</div>')
+    });
+    $(document.getElementById('dec')).click(
+        function(){
+            $(document.getElementById('yv')).append('<div>Sorry that this trade didn\'t work for you</div>')
+    });
+    $(document.getElementById('sub_btn')).click(
+      function(){
+        var message = $(document.getElementById('message_box')).val();
+        var user = $(document.getElementById('user')).text();
+        var dat = { };
+        dat[user] = message;
+        console.log(dat);
+        if(message != ''){
+          console.log(message);
+          $(document.getElementById('chat_log')).append('<div>'+user+': '+message+'</div><hr>')
+          $(document.getElementById('message_box')).val('');
+
+        }
+        $.ajax({
+          url: 'http://localhost:8080',
+          type: 'POST',
+          data: dat,
+          success: function (result) {
+            alert("Your bookmark has been saved");
+          }
+        });
+        return false;
+    });
+
+  });
+  </script>
+</html>
+
+
+
+
+
+

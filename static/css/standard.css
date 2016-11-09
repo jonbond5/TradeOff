@@ -53,3 +53,7 @@ body {
 	background: white;
 	margin-bottom: 10px;
 }
+
+.media-body{
+    font-size:16px!important;
+}

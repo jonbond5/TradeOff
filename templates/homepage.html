@@ -40,9 +40,12 @@
             <div class="col-sm-12 box">
               <a>
                 <ul>
-                  Your Trades
+                  <a href={{ url_for('add') }}>Your Trades</a>
                 </ul>
               </a>
+                <ul>
+                  <a href={{ url_for('index') }}>Home</a>
+                </ul>
               <a>
                 <ul>
                   Recent Trades
@@ -50,42 +53,27 @@
               </a>
               <a>
                 <ul>
-                  Account Settings
+                  <a href={{url_for('login')}}>Login</a>
                 </ul>
               </a>
             </div>
           </div>
         </div>
-        <div class="col-sm-1"></div>
         <div class="col-sm-7">
-          <div class="row matched-trade box">
+          <a href="{{url_for('results')}}"><div class="row matched-trade box">
             <div class="col-sm-12">
               <div class="row">
                 <div class="col-sm-6">
                   Item you are getting:
-                  {{ get_item }}
+                  Toothpick
                 </div>
                 <div class="col-sm-6">
                   Item you are giving:
-                  {{ give_item }}
+                  Apple
                 </div>
               </div>
             </div>
-          </div>
-          <div class="row matched-trade box">
-            <div class="col-sm-12">
-              <div class="row">
-                <div class="col-sm-6">
-                  Item you are getting:
-                  {{ get_item }}
-                </div>
-                <div class="col-sm-6">
-                  Item you are giving:
-                  {{ give_item }}
-                </div>
-              </div>
-            </div>
-          </div>
+          </div></a>
         </div>
         <div class="col-sm-1"></div>
       </div>

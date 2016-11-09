@@ -18,13 +18,20 @@ def db_pass_query(user,password):
     except:
         return False    
 
+@app.route('/results')
+def results():
+    return render_template('result.html',user=session['user'])
+
 @app.route('/')
 def index():
-    try:
-        return render_template('homepage.html',user=session['user'])
-    except:
-        print "Failed"
-        return render_template('Login.html')
+#    try:
+    loop = {'jon':'peach','kyle':'car','keith':'computer'}
+    itemList = ['peach','car','computer']
+    return render_template('homepage.html',user=session['user'],i=itemList)
+#    except:
+#        print session['user']
+#        print "Failed"
+#        return render_template('Login.html')
 
 @app.route('/login',methods=['GET','POST'])
 def login():
@@ -87,12 +94,12 @@ def delete():
     trader1.destroyMerch(remove)
     return 'OK'
 
-@app.route('/inventory',methods=['GET','POST'])
-def inventory():
+@app.route('/add',methods=['GET','POST'])
+def add():
     trader1 = getUserByField('username',str(session['user']))
     requestList = [i.details['name'] for i in trader1.enumerateWantedMerch()]
     tradingList = [x.details['name'] for x in trader1.enumerateMerch()]
-    return render_template('add.html',tradingList=tradingList,requestList=requestList)
+    return render_template('add.html',user=session['user'],tradingList=tradingList,requestList=requestList)
 
 
 
